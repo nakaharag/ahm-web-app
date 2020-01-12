@@ -1,15 +1,60 @@
 <template>
     <div class="container">
-        <div class="card card-default">
-            <div class="card-header">Bienvenue</div>
+        <div class="card card-default w-50 clearfix p-1 mt-5 mx-auto">
+            <div class="card-header">Login</div>
             <div class="card-body">
-                <p>
-                    American  Main Barbary Coast scuttle hardtack spanker fire ship grapple jack code  of conduct port. Port red ensign Shiver me timbers provost salmagundi  bring a spring upon her cable pillage cog crow's nest lateen sail.  Barbary Coast quarterdeck lass coffer keel hulk mizzen me square-rigged  loot.
-                </p>
-                <p>
-                    Yardarm starboard keelhaul list schooner prow booty cackle  fruit gabion topmast. Plunder shrouds Nelsons folly jack Arr parley warp  grog blossom ballast pressgang. Knave crack Jennys tea cup flogging log  man-of-war hearties killick long clothes six pounders hulk.
-                </p>
+                <div class="alert alert-danger" v-if="has_error">
+                    <p>Ocorreu um erro. Tente novamente mais tarde</p>
+                </div>
+                <form autocomplete="off" @submit.prevent="login" method="post">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" class="form-control" v-model="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Entrar</button>
+                </form>
             </div>
         </div>
     </div>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        email: null,
+        password: null,
+        has_error: false
+      }
+    },
+    mounted() {
+      //
+    },
+    methods: {
+      login() {
+        // get the redirect object
+        var redirect = this.$auth.redirect()
+        var app = this
+        this.$auth.login({
+          params: {
+            email: app.email,
+            password: app.password
+          },
+          success: function() {
+            // handle redirection
+            const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
+            this.$router.push({name: redirectTo})
+          },
+          error: function() {
+            app.has_error = true
+          },
+          rememberMe: true,
+          fetchUser: true
+        })
+      }
+    }
+  }
+</script>

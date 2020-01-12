@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'nome', 'email', 'password', 'whats'
+        'nome', 'role', 'email', 'password', 'whats'
     ];
 
     /**
@@ -42,15 +42,5 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function delete()
-    {
-        $user = User::findOrFail($id);
-        if($user)
-            $user->delete(); 
-        else
-            return response()->json(error);
-        return response()->json(null); 
     }
 }

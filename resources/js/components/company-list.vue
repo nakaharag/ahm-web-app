@@ -1,34 +1,33 @@
 <template>
 <div>
     <div class="alert alert-danger" v-if="has_error">
-        <p>Ocorreu um erro ao ler a lista de usuários</p>
+        <p>Ocorreu um erro ao ler a lista de empresas</p>
     </div>
     <div class="row">
         <div class="search-wrapper panel-heading col-sm-12 pb-2">
             <input class="form-control" type="text" v-model="search" placeholder="Procurar" />
         </div>                        
     </div>
-    <div id="list-users" v-if="users && users.length">
+    <div id="list-companies" v-if="companies && companies.length">
       <table class="table">
           <tr>
-              <th scope="col">Nome</th>
+              <th scope="col">Empresa</th>
+              <th scope="col">Responsável</th>
+              <th scope="col">Setor</th>
               <th scope="col">E-mail</th>
               <th scope="col">Whats</th>
-              <th scope="col">Perfil</th>
               <th scope="col">Data de cadastro</th>
           </tr>
-        
-              <tr v-for="user in usersFilter" v-bind:key="user.id" style="margin-bottom: 5px;">
-                  <router-link :to="{ name: 'user', params: { userId: user.id }}">
-                      <th scope="row">{{ user.nome }}</th>
-                      <td>{{ user.email }}</td>
-                      <td>{{ user.whats }}</td>
-                      <td v-if='user.role == 1'>Usuário comum</td>
-                      <td v-else>Admin</td>
-                      <td>{{ user.created_at}}</td>
-                  </router-link>
-              </tr>
-          
+          <tr v-for="company in companiesFilter" v-bind:key="company.id" style="margin-bottom: 5px;">
+              <router-link :to="{ name: 'company', params: { companyId: company.id }}">
+                  <th scope="row">{{ company.empresa }}</th>
+                  <td>{{ company.responsavel }}</td>
+                  <td>{{ company.setor }}</td>
+                  <td>{{ company.email }}</td>
+                  <td>{{ company.whats }}</td>
+                  <td>{{ company.created_at}}</td>
+              </router-link>
+          </tr>
       </table>
     </div>
     <div class="text-center" v-else>
@@ -41,25 +40,25 @@
     data() {
       return {
         has_error: false,
-        users: null,
+        companies: null,
         search: "",
       }
     },
     computed: {
-      usersFilter: function() {
+      companiesFilter: function() {
         var search = this.search;
-        return this.users.filter(function(el) {
-          return el.nome.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+        return this.companies.filter(function(el) {
+          return el.empresa.toLowerCase().indexOf(search.toLowerCase()) !== -1;
         });
       }
     },
     created() {
       this.$http({
-        url: `users`,
+        url: `companies`,
         method: 'GET'
       })
           .then((res) => {
-            this.users = res.data.users
+            this.companies = res.data.companies
           }, () => {
             this.has_error = true
           })

@@ -1,11 +1,6 @@
 <template>
     <div id="main">
         <header id="header">
-            <h1>
-                <router-link :to="{name: 'home'}">
-                    <img src="images/logo3.png" width="200px" alt="HMC" /> 
-                </router-link>
-            </h1>
             <navigationMenu></navigationMenu>
         </header>
         <div id="content">

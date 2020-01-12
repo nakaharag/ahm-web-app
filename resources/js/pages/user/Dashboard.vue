@@ -1,15 +1,15 @@
 <template>
     <div class="container">
         <div class="card card-default">
-            <div class="card-header">Lista de clientes</div>
+            <div class="card-header">Lista de empresas</div>
             <div class="card-body">
-                <clientList></clientList>
+                <companyList></companyList>
             </div>
         </div>
     </div>
 </template>
 <script>
-  import clientList from '../../components/client-list.vue'
+  import companyList from '../../components/company-list.vue'
   export default {
     data() {
       return {
@@ -17,7 +17,7 @@
       }
     },
     components: {
-      clientList
+      companyList
     }
   }
 </script>

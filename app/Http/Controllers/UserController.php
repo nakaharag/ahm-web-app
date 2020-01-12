@@ -26,4 +26,14 @@ class UserController extends Controller
                 'user' => $user->toArray()
             ], 200);
     }
+
+    public function delete(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if($user)
+            $user->delete();
+        else
+            return response()->json(error);
+        return response()->json(null); 
+    }
 }

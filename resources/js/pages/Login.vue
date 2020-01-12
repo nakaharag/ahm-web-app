@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="card card-default">
+        <div class="card card-default w-50 clearfix p-1 mt-5 mx-auto">
             <div class="card-header">Login</div>
             <div class="card-body">
                 <div class="alert alert-danger" v-if="has_error">
