@@ -36,5 +36,11 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('companies', 'CompanyController@index')->middleware('isAdmin');
     Route::delete('companies/{id}', 'CompanyController@delete')->middleware('isAdmin');
     Route::get('companies/{id}', 'CompanyController@show')->middleware('isAdminOrSelf');
+    // Surveys
+    //Route::get('surveys/{company_id}', 'SurveyController@index');
+
+    Route::get('surveys/{id}/', 'SurveyController@index');
+    Route::post('surveys', 'SurveyController@store');
+    Route::delete('surveys/{id}', 'SurveyController@delete');
 });
 

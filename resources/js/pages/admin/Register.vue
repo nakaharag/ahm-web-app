@@ -41,6 +41,8 @@
                         <input type="password" id="password_confirmation" class="form-control" placeholder="Mínimo de 5 caracteres. Igual acima" v-model="password_confirmation">
                     </div>
                     <button type="submit" class="btn btn-dark">Enviar</button>
+                    <router-link v-if="$auth.check(2)" :to="{ name: 'admin-dashboard'}">Voltar</router-link>
+                    <router-link v-else :to="{ name: 'dashboard'}">Voltar</router-link>
                 </form>
             </div>
         </div>
@@ -90,3 +92,19 @@
     }
   }
 </script>
+<style scoped>
+  a { 
+    border: 1px solid #73738c;
+    padding: 8px;
+    margin: 10px;
+    background-color: #73738c;
+    color: #FFF;
+    border-radius: 5px;
+    float: right;
+  }
+  a:hover{
+    background-color: #565658;
+    text-decoration: none;
+    color: #FFF;
+  }
+</style>

@@ -5,6 +5,8 @@ import Register from './pages/admin/Register'
 import RegisterCompany from './pages/user/RegisterCompany'
 import Company from './pages/user/Company'
 import Login from './pages/Login'
+import Survey from './pages/user/Survey'
+import SurveyResult from './pages/user/SurveyResult'
 import Dashboard from './pages/user/Dashboard'
 import userPage from './pages/user/Page'
 import AdminDashboard from './pages/admin/Dashboard'
@@ -37,6 +39,22 @@ const routes = [
     }
   },
   {
+    path: '/survey',
+    name: 'survey',
+    component: Survey,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/survey/result',
+    name: 'survey-result',
+    component: SurveyResult,
+    meta: {
+      auth: true
+    }
+  },
+  {
     path: '/register-company',
     name: 'register-company',
     component: RegisterCompany,
@@ -55,7 +73,7 @@ const routes = [
   // ADMIN ROUTES
   {
     path: '/admin',
-    name: 'admin.dashboard',
+    name: 'admin-dashboard',
     component: AdminDashboard,
     meta: {
       auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
@@ -63,14 +81,14 @@ const routes = [
   },  
     {
     path: '/register',
-    name: 'admin.register',
+    name: 'admin-register',
     component: Register,
     meta: {
       auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
   {
-    path: '/user/:id',
+    path: '/user',
     name: 'user',
     component: userPage,
     meta: {

@@ -25,7 +25,7 @@
                   <td>{{ company.setor }}</td>
                   <td>{{ company.email }}</td>
                   <td>{{ company.whats }}</td>
-                  <td>{{ company.created_at}}</td>
+                  <td>{{ company.created_at | moment }}</td>
               </router-link>
           </tr>
       </table>
@@ -52,7 +52,7 @@
         });
       }
     },
-    created() {
+    mounted () {
       this.$http({
         url: `companies`,
         method: 'GET'

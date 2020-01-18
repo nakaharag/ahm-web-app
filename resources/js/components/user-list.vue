@@ -25,7 +25,7 @@
                       <td>{{ user.whats }}</td>
                       <td v-if='user.role == 1'>Usuário comum</td>
                       <td v-else>Admin</td>
-                      <td>{{ user.created_at}}</td>
+                      <td>{{ user.created_at | moment }}</td>
                   </router-link>
               </tr>
           

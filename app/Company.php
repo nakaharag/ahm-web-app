@@ -15,8 +15,8 @@ class Company extends Model
         'empresa', 'responsavel', 'email', 'setor', 'whats'
     ];
 
-    public function formOne()
+    public function Survey()
     {
-        return $this->hasMany(Form::Class);
+        return $this->hasMany(Survey::class);
     }
 }

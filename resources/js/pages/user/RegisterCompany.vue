@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+      <div class="container">
         <div class="card card-default">
             <div class="card-header">Nova Empresa</div>
             <div class="card-body">
@@ -34,10 +34,12 @@
                         <span class="help-block" v-if="has_error && errors.whats">{{ errors.whats }}</span>
                     </div>
                     <button type="submit" class="btn btn-dark">Enviar</button>
+                    <router-link v-if="$auth.check(2)" :to="{ name: 'admin-dashboard'}">Voltar</router-link>
+                    <router-link v-else :to="{ name: 'dashboard'}">Voltar</router-link>
                 </form>
             </div>
         </div>
-    </div>
+      </div>
 </template>
 <script>
   export default {
@@ -81,3 +83,19 @@
     }
   }
 </script>
+<style scoped>
+  a { 
+    border: 1px solid #73738c;
+    padding: 8px;
+    margin: 10px;
+    background-color: #73738c;
+    color: #FFF;
+    border-radius: 5px;
+    float: right;
+  }
+  a:hover{
+    background-color: #565658;
+    text-decoration: none;
+    color: #FFF;
+  }
+</style>

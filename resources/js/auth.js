@@ -10,9 +10,9 @@ const config = {
   tokenDefaultName: 'ahm-web-app',
   tokenStore: ['localStorage'],
   rolesVar: 'role',
-  registerData: {url: 'auth/register', method: 'POST', redirect: '/admin.dashboard'},
-  registerCompany: {url: 'auth/register-company', method: 'POST', redirect: '/admin.dashboard'},
-  loginData: {url: 'auth/login', method: 'POST', redirect: '', fetchUser: true},
+  registerData: {url: 'auth/register', method: 'POST', redirect: '/admin-dashboard'},
+  registerCompany: {url: 'auth/register-company', method: 'POST', redirect: '/admin-dashboard'},
+  loginData: {url: 'auth/login', method: 'POST', redirect: 'dashboard', fetchUser: true},
   logoutData: {url: 'auth/logout', method: 'POST', redirect: '/', makeRequest: true},
   fetchData: {url: 'auth/user', method: 'GET', enabled: true},
   refreshData: {url: 'auth/refresh', method: 'GET', enabled: true, interval: 30}

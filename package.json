@@ -29,7 +29,12 @@
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "@websanova/vue-auth": "^2.21.15-beta",
         "es6-promise": "^4.2.8",
+        "jspdf": "^1.5.3",
+        "moment": "^2.24.0",
+        "survey-pdf": "^1.1.32",
+        "survey-vue": "^1.1.31",
         "vue-axios": "^2.1.5",
+        "vue-moment": "^4.1.0",
         "vue-router": "^3.1.3"
     }
 }

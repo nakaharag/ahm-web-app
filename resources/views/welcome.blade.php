@@ -9,6 +9,9 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+  
+{{-- <link href="https://surveyjs.azureedge.net/1.1.31/survey.css" type="text/css" rel="stylesheet" /> --}}
+{{-- <script src="https://surveyjs.azureedge.net/1.1.31/survey.vue.min.js"></script> --}}
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">

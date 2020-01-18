@@ -1,6 +1,6 @@
 <template>
 <div class="container pb-2">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-custom">
     <a class="navbar-brand">
       <router-link :to="{name: 'home'}">
         <img width="200px" alt="HMC" src="images/logo3.png">
@@ -71,11 +71,11 @@
           admin: [
             {
               name: 'Dashboard',
-              path: 'admin.dashboard'
+              path: 'admin-dashboard'
             },
             {
               name: 'Novo Usuário',
-              path: 'admin.register'
+              path: 'admin-register'
             },
             {
               name: 'Nova Empresa',
