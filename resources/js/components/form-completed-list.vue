@@ -1,3 +1,4 @@
+    }
 <template>
     <div>
     <div v-if="has_error">
@@ -14,7 +15,7 @@
               <tr v-for="form in forms" v-bind:key="form.id" style="margin-bottom: 5px;">
                   <th scope="row">{{ form.survey_name }}</th>
                   <td>{{ form.created_at | moment }}</td>
-                  <td><router-link :to="{ name: 'survey-result', params: { survey_id: form.survey_id, result_id: form.result_id }}">Ver resultado</router-link> || <a @click.prevent="deleteForm(form.id)">Apagar</a></td>
+                  <td><router-link :to="{ name: 'survey-result', params: { survey_id: form.survey_id, result_id: form.result_id, survey_name: form.survey_name }}">Ver resultado</router-link> || <a href="" @click.prevent="deleteForm(form.id)">Apagar</a></td>
               </tr>
           </table>
         </div>
@@ -45,13 +46,15 @@
     methods: {
 
       deleteForm(id){
-        axios
-            .delete(`/surveys/id`)
+        if(confirm('Deseja mesmo apagar este preenchimento?')){
+          axios
+            .delete(`/surveys/`+id)
             .then(response => {
                 if(response.statusText == 'OK') {
                   this.$router.go(-1)
                 }
             });
+        }
       }
     }
 
@@ -60,5 +63,12 @@
 <style scoped>
     a {
         display: contents;
+        cursor: pointer;
+        color: #0056b3;
+    }
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: underline;
     }
 </style>

@@ -1,7 +1,5 @@
 <template>
     <div class="container">
-        
-        <h3> {{ this.$route.params.surveyName }} </h3>
         <div class="col-10 d-flex">
           <div v-if="survey">
             <survey :survey="survey"></survey> 

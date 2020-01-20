@@ -27,7 +27,7 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api', 'cors'], function(){
     // Users
     Route::get('users', 'UserController@index')->middleware('isAdmin');
     Route::delete('users/{id}', 'UserController@delete')->middleware('isAdmin');
@@ -41,6 +41,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('surveys/{id}/', 'SurveyController@index');
     Route::post('surveys', 'SurveyController@store');
-    Route::delete('surveys/{id}', 'SurveyController@delete');
+    Route::delete('surveys/{id}/', 'SurveyController@delete');
 });
 

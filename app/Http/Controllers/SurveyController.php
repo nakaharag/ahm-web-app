@@ -9,7 +9,6 @@ class SurveyController extends Controller
     public function index(Request $request, $id)
    {
         return Surveys::where('company_id', $request['id'])->get();
-        //return response()->json(Surveys::where('company_id', $request['id'])->find(), 200);
    }
 
    public function store(Request $request)
@@ -21,8 +20,6 @@ class SurveyController extends Controller
             'survey_name' => 'required'
         ]);
 
-        //$survey = Surveys::create($data);
-
         $survey =  Surveys::create([
             'company_id' => $data['company_id'],
             'survey_id' => $data['survey_id'],
@@ -32,10 +29,15 @@ class SurveyController extends Controller
 
         $survey->save();
 
-        //return new ReviewResource($review);
         return response()->json($survey, 201);
     }
-    public function delete(){
-        return;
+
+    public function delete(Request $request)
+    {   
+        $survey = Surveys::find($request['id']);
+
+        $survey->delete();
+
+        return response()->json($survey, 200);
     }
 }
