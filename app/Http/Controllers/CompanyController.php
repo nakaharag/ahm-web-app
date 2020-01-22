@@ -47,14 +47,14 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return Company::create([
-            'empresa' => $data['empresa'],
-            'email' => $data['email'],
-            'setor' => $data['setor'],
-            'responsavel' => $data['responsavel'],
-            'whats' => $data['whats']
+            'empresa' => $request['empresa'],
+            'email' => $request['email'],
+            'setor' => $request['setor'],
+            'responsavel' => $request['responsavel'],
+            'whats' => $request['whats']
         ]);
     }
 

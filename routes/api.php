@@ -33,7 +33,8 @@ Route::group(['middleware' => 'auth:api', 'cors'], function(){
     Route::delete('users/{id}', 'UserController@delete')->middleware('isAdmin');
     Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
     // Companies
-    Route::get('companies', 'CompanyController@index')->middleware('isAdmin');
+    Route::post('registerCompany', 'CompanyController@create');
+    Route::get('companies', 'CompanyController@index')->middleware('isAdminOrSelf');
     Route::delete('companies/{id}', 'CompanyController@delete')->middleware('isAdmin');
     Route::get('companies/{id}', 'CompanyController@show')->middleware('isAdminOrSelf');
     // Surveys

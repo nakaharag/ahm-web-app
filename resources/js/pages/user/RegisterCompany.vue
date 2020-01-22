@@ -59,26 +59,40 @@
     methods: {
       register() {
         var app = this
-        this.$auth.register({
-          data: {
+        var data = {
             empresa: app.empresa,
             responsavel: app.responsavel,
             email: app.email,
             setor: app.setor,
             whats: app.whats
-          },
-          success: function () {
-            app.success = true
-            this.$router.go(-1)
-            //this.$router.push({name: 'admin.dashboard', params: {successRegistrationRedirect: true}})
-          },
-          error: function (res) {
-            console.log(res.response.data.errors)
-            app.has_error = true
-            app.error = res.response.data.error
-            app.errors = res.response.data.errors || {}
           }
-        })
+          axios.post('registerCompany/', data
+      ).catch(function (error) {
+        console.log(error);
+      }).then(
+        this.$router.go(-1)
+      );
+        
+        // this.$auth.registerCompany({
+        //   data: {
+        //     empresa: app.empresa,
+        //     responsavel: app.responsavel,
+        //     email: app.email,
+        //     setor: app.setor,
+        //     whats: app.whats
+        //   },
+        //   success: function () {
+        //     app.success = true
+        //     this.$router.go(-1)
+        //     //this.$router.push({name: 'admin.dashboard', params: {successRegistrationRedirect: true}})
+        //   },
+        //   error: function (res) {
+        //     console.log(res.response.data.errors)
+        //     app.has_error = true
+        //     app.error = res.response.data.error
+        //     app.errors = res.response.data.errors || {}
+        //   }
+        // })
       }
     }
   }
