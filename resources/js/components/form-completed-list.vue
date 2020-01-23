@@ -1,4 +1,3 @@
-    }
 <template>
     <div>
     <div v-if="has_error">
@@ -35,6 +34,7 @@
         axios
         .get(`surveys/list?id=${this.$route.params.companyId}`)
         .then(response => {
+          console.log(response)
           this.forms = response.data
           this.forms=='[]'?this.has_error = true:this.has_error = false
         })
