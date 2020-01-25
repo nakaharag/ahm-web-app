@@ -5,6 +5,7 @@ import Vue from 'vue'
 import VueAuth from '@websanova/vue-auth'
 import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
+import VueTheMask from 'vue-the-mask'
 import Index from './Index'
 import auth from './auth'
 import router from './router'
@@ -17,6 +18,8 @@ Vue.router = router
 Vue.use(VueRouter)
 // Set Vue authentication
 Vue.use(VueAxios, axios)
+
+Vue.use(VueTheMask)
 
 window.moment = moment
 
@@ -34,6 +37,7 @@ Vue.filter('format-thousands', function (value) {
 
 axios.defaults.baseURL = `http://127.0.0.1:8000/api`
 //axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`
+
 Vue.use(VueAuth, auth)
 // Load Index
 Vue.component('index', Index)

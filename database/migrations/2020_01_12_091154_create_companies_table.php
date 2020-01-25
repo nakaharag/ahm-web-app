@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('setor')->nullable();
             $table->string('email')->unique();
             $table->string('whats')->nullable();
+            $table->string('horas')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
               <th scope="col">E-mail</th>
               <th scope="col">Whats</th>
               <th scope="col">Perfil</th>
-              <th scope="col">Data de cadastro</th>
+              <th scope="col">Empresa</th>
           </tr>
         
               <tr v-for="user in usersFilter" v-bind:key="user.id" style="margin-bottom: 5px;">
@@ -24,8 +24,9 @@
                       <td>{{ user.email }}</td>
                       <td>{{ user.whats }}</td>
                       <td v-if='user.role == 1'>Usuário comum</td>
+                      <td v-else-if='user.role == 3'>Cliente</td>
                       <td v-else>Admin</td>
-                      <td>{{ user.created_at | moment }}</td>
+                      <td>{{ user.company.empresa }}</td>
                   </router-link>
               </tr>
           

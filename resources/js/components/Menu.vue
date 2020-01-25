@@ -32,6 +32,17 @@
               {{route.name}}
           </router-link>
         </li>
+        <!--LOGGED Client-->
+        <li 
+          v-if="$auth.check(3)" 
+          v-for="(route, key) in routes.client" 
+          v-bind:key="route.path"
+          class="nav-item"
+        >
+          <router-link class="nav-link" :to="{ name : route.path }" :key="key">
+              {{route.name}}
+          </router-link>
+        </li>
         <!--LOGOUT-->
         <li 
           v-if="$auth.check()"
@@ -65,6 +76,10 @@
             {
               name: 'Dashboard',
               path: 'dashboard'
+            },
+            {
+              name: 'Cadastro de horas',
+              path: 'cadastro-horas'
             }
           ],
           // LOGGED ADMIN
@@ -74,14 +89,25 @@
               path: 'admin-dashboard'
             },
             {
+              name: 'Nova Empresa',
+              path: 'register-company'
+            },
+            {
               name: 'Novo Usuário',
               path: 'admin-register'
             },
             {
-              name: 'Nova Empresa',
-              path: 'register-company'
+              name: 'Cadastro de horas',
+              path: 'cadastro-horas'
             },
-          ]
+          ],
+          // LOGGED Client
+          client: [
+            {
+              name: 'Dashboard',
+              path: 'dashboard-client'
+            }
+          ],
         }
       }
     },

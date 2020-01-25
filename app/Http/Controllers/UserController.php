@@ -9,7 +9,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        ///$users = User::all();
+       $users = User::with('company')->get();
+       // $users = $this->user->with('salutation')->all();
         return response()->json(
             [
                 'status' => 'success',

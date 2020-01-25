@@ -54,7 +54,8 @@ class CompanyController extends Controller
             'email' => $request['email'],
             'setor' => $request['setor'],
             'responsavel' => $request['responsavel'],
-            'whats' => $request['whats']
+            'whats' => $request['whats'],
+            'horas' => $request['horas']
         ]);
     }
 

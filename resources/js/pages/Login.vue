@@ -45,7 +45,17 @@
           },
           success: function() {
             // handle redirection
-            const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin-dashboard' : 'dashboard'
+            // old wordking = const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin-dashboard' : 'dashboard'
+            const redirectTo = '';
+            
+            if(this.$auth.user().role === 2){
+              redirectTo = redirect ? redirect.from.name : 'admin-dashboard'
+            } else if(this.$auth.user().role === 1){
+              redirectTo = redirect ? redirect.from.name : 'dashboard' 
+            } else {
+              redirectTo = redirect ? redirect.from.name : 'client-dashboard'
+            }
+
             this.$router.push({name: redirectTo})
           },
           error: function() {

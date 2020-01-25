@@ -33,6 +33,11 @@
                         <input type="text" id="whats" class="form-control" placeholder="(99) 99999-9999" v-model="whats">
                         <span class="help-block" v-if="has_error && errors.whats">{{ errors.whats }}</span>
                     </div>
+                    <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.horas }">
+                        <label for="horas">Quantidade de horas contratadas</label>
+                        <input type="text" id="horas" class="form-control" placeholder="Somente números" v-model="horas">
+                        <span class="help-block" v-if="has_error && errors.horas">{{ errors.horas }}</span>
+                    </div>
                     <button type="submit" class="btn btn-dark">Enviar</button>
                     <router-link v-if="$auth.check(2)" :to="{ name: 'admin-dashboard'}">Voltar</router-link>
                     <router-link v-else :to="{ name: 'dashboard'}">Voltar</router-link>
@@ -50,6 +55,7 @@
         responsavel: '',
         setor: '',
         whats: '',
+        horas: '',
         has_error: false,
         error: '',
         errors: {},
@@ -64,7 +70,8 @@
             responsavel: app.responsavel,
             email: app.email,
             setor: app.setor,
-            whats: app.whats
+            whats: app.whats,
+            horas: app.horas
           }
           axios.post('registerCompany/', data
       ).catch(function (error) {

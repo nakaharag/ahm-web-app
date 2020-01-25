@@ -8,17 +8,33 @@
                 <companyDetail></companyDetail>
             </div>
         </div>
-        <div class="card card-default p-1">
-            <div class="card-header">Formulários Disponíveis</div>
-            <div class="card-body">
-                <formList :company-id="this.$route.params.companyId"></formList>
+        <div class="row">
+          <div class="col-6">
+            <div class="card card-default p-1">
+              <div class="card-header">Formulários Disponíveis</div>
+                <div class="card-body">
+                  <formList :company-id="this.$route.params.companyId"></formList>
+                </div>
             </div>
-        </div>
-        <div class="card card-default p-1">
-            <div class="card-header">Formulários Preenchidos</div>
-            <div class="card-body">
+          </div>
+          <div class="col-6">
+            <div class="card card-default p-1">
+              <div class="card-header">Formulários Preenchidos</div>
+              <div class="card-body">
                 <formCompletedList :company-id="this.$route.params.companyId"></formCompletedList>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="row  p-1">
+          <div class="col-12">
+            <div class="card card-default">
+              <div class="card-header">Extrato de Serviços Prestrados</div>
+              <div class="card-body">
+                <extratoHoras :company-id="this.$route.params.companyId"></extratoHoras>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </template>
@@ -26,6 +42,8 @@
 import companyDetail from '../../components/company-detail.vue'
 import formList from '../../components/form-list.vue'
 import formCompletedList from '../../components/form-completed-list.vue'
+import extratoHoras from '../../components/extrato-horas.vue'
+
   export default {
     data() {
       return {

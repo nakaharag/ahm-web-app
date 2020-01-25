@@ -10,6 +10,8 @@ import SurveyResult from './pages/user/SurveyResult'
 import Dashboard from './pages/user/Dashboard'
 import userPage from './pages/user/Page'
 import AdminDashboard from './pages/admin/Dashboard'
+import CadastroHoras from './pages/user/CadastroHoras'
+import ClientDashboard from './pages/client/ClientDashboard'
 
 // Routes
 const routes = [
@@ -70,6 +72,14 @@ const routes = [
       auth: true
     }
   },
+  {
+    path: '/cadastro-horas',
+    name: 'cadastro-horas',
+    component: CadastroHoras,
+    meta: {
+      auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+    }
+  },
   // ADMIN ROUTES
   {
     path: '/admin',
@@ -93,6 +103,15 @@ const routes = [
     component: userPage,
     meta: {
         auth: true
+    }
+  },
+  // Client ROUTES
+  {
+    path: '/client-dashboard',
+    name: 'client-dashboard',
+    component: ClientDashboard,
+    meta: {
+      auth: true
     }
   },
   { path: '*', redirect: '/' },

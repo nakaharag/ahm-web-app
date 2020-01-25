@@ -16,7 +16,7 @@
               <th scope="col">Setor</th>
               <th scope="col">E-mail</th>
               <th scope="col">Whats</th>
-              <th scope="col">Data de cadastro</th>
+              <th scope="col">Horas Contratadas</th>
           </tr>
           <tr v-for="company in companiesFilter" v-bind:key="company.id" style="margin-bottom: 5px;">
               <router-link :to="{ name: 'company', params: { companyId: company.id }}">
@@ -25,7 +25,7 @@
                   <td>{{ company.setor }}</td>
                   <td>{{ company.email }}</td>
                   <td>{{ company.whats }}</td>
-                  <td>{{ company.created_at | moment }}</td>
+                  <td>{{ company.horas }}</td>
               </router-link>
           </tr>
       </table>
