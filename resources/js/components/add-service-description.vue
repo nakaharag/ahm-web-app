@@ -57,12 +57,12 @@ export default {
             titulo: app.titulo,
             company_id: this.$attrs.empresaId
           }
-          console.log(data)
           axios.post('servico', data
       ).catch(function (error) {
         console.log(error);
       }).then(
-        this.$router.go(-1)
+        alert("Serviço cadastrado com sucesso!"),
+        this.$router.go(0)
       );
       }
     }

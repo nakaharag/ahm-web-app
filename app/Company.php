@@ -12,7 +12,8 @@ class Company extends Model
     use Notifiable;
 
     protected $fillable = [
-        'empresa', 'responsavel', 'email', 'setor', 'whats', 'horas'
+        'empresa', 'responsavel', 'email', 'setor', 'whats', 'horas','url_hospedagem','user_hospedagem','pw_hospedagem','url_googleads','user_googleads','pw_googleads','url_linkedin','user_linkedin','pw_linkedin','url_twitter','user_twitter',
+        'pw_twitter','url_youtube','user_youtube','pw_youtube','url_facebook','user_facebook','pw_facebook','url_instagram','user_instagram','pw_instagram'
     ];
 
     public function Survey()

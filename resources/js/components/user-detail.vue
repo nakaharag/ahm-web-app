@@ -12,14 +12,13 @@
               <th scope="col">Data de cadastro</th>
               <th scope="col">Ações</th>
           </tr>
-        
-              <tr style="margin-bottom: 5px;">
-                  <th scope="row">{{ user.nome }}</th>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.whats }}</td>
-                  <td>{{ user.created_at | moment }}</td>
-                  <td @click.prevent="deleteUser" ><a href="#"> Apagar</a></td>
-              </tr>
+          <tr style="margin-bottom: 5px;">
+              <th scope="row">{{ user.nome }}</th>
+              <td>{{ user.email }}</td>
+              <td>{{ user.whats }}</td>
+              <td>{{ user.created_at | moment }}</td>
+              <td @click.prevent="deleteUser" ><a href="#"> Apagar</a></td>
+          </tr>
       </table>
     </div>
     <div v-else>Carregando...</div>

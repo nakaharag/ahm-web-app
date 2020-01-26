@@ -1,20 +1,25 @@
 <template>
 <div>
-    <div id="list-companies" v-if="servicos && servicos.length">
+    <div id="list-companies" v-if="servicos && servicos.length && company">
+      <p v-if="company" class="m-2 float-right">Horas contratadas: {{ company.horas }}</p>
       <table class="table">
           <tr>
               <th scope="col">Titulo</th>
               <th scope="col">Descrição</th>
-              <th scope="col">Horas</th>
+              <th scope="col">Tempo</th>
               <th scope="col">Data</th>
           </tr>
           <tr v-for="servico in servicos" v-bind:key="servico.id" style="margin-bottom: 5px;">
-                  <th scope="row">{{ servico.titulo }}</th>
-                  <td>{{ servico.descricao }}</td>
-                  <td>{{ servico.horas }}</td>
-                  <td>{{ servico.created_at | moment }}</td>
+            <th scope="row">{{ servico.titulo }}</th>
+            <td>{{ servico.descricao }}</td>
+            <td>{{ servico.horas }}<p v-if="servico.horas"> minutos</p></td>
+            <td>{{ servico.data | moment }}</td>
           </tr>
+          <p class="pt-3 float-right">Saldo de horas: {{ totalHours }}</p>
       </table>
+    </div>
+    <div v-else>
+      Carregando informações...
     </div>
 </div>
 </template>
@@ -23,14 +28,16 @@
     data() {
       return {
         has_error: false,
-        servicos: null
+        servicos: null,
+        company: null
       }
     },
     mounted() {
-      this.getCompany()
+      this.getCompany(),
+      this.getServico()
     },
     methods: {
-      getCompany() {
+      getServico() {
         axios.get(`servico/${this.$attrs.companyId}`
       ).catch(function (error) {
       console.log(error);
@@ -41,22 +48,31 @@
          this.has_error = true
          })
       },
-      deleteCompany(){
+      getCompany() {
         axios
-            .delete(`/companies/${this.$route.params.companyId}`)
-            .then(response => {
-                if(response.statusText == 'OK') {
-                  this.$router.go(-1)
-                  
-                }
-            });
+          .get(`/companies/${this.$attrs.companyId}`)
+          .then(response => {
+              this.company = response.data.company
+          });
       }
-    }
-
+    },
+    computed: {
+      totalHours: function(){
+      let sum = 0;
+      for(let i = 0; i < this.servicos.length; i++){
+        sum += this.servicos[i].horas;
+      }
+      let total = this.company.horas - (sum/60).toFixed(2);
+     return total;
+   }
+}
   }
 </script>
 <style scoped>
     a {
         display: contents;
+    }
+    p {
+      display: inline;
     }
 </style>

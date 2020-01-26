@@ -22,6 +22,27 @@ class CreateCompaniesTable extends Migration
             $table->string('email')->unique();
             $table->string('whats')->nullable();
             $table->string('horas')->nullable();
+            $table->string('url_hospedagem')->nullable();
+            $table->string('user_hospedagem')->nullable();
+            $table->string('pw_hospedagem')->nullable();
+            $table->string('url_googleads')->nullable();
+            $table->string('user_googleads')->nullable();
+            $table->string('pw_googleads')->nullable();
+            $table->string('url_linkedin')->nullable();
+            $table->string('user_linkedin')->nullable();
+            $table->string('pw_linkedin')->nullable();
+            $table->string('url_twitter')->nullable();
+            $table->string('user_twitter')->nullable();
+            $table->string('pw_twitter')->nullable();
+            $table->string('url_youtube')->nullable();
+            $table->string('user_youtube')->nullable();
+            $table->string('pw_youtube')->nullable();
+            $table->string('url_facebook')->nullable();
+            $table->string('user_facebook')->nullable();
+            $table->string('pw_facebook')->nullable();
+            $table->string('url_instagram')->nullable();
+            $table->string('user_instagram')->nullable();
+            $table->string('pw_instagram')->nullable();
             $table->timestamps();
         });
     }

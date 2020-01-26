@@ -12,11 +12,10 @@
                     </select>
                </div>
                <div class="form-group">
-                  <label for="horas" class="control-label m-4">Quantidade de horas</label>
-                  <vue-numeric-input  v-model="horas" :min="1" :max="520" :step="1"></vue-numeric-input>
+                  <label for="horas" class="control-label m-4">Quantidade de minutos</label>
+                  <vue-numeric-input  v-model="horas" :min="1" :max="9999" :step="1"></vue-numeric-input>
                </div>
                <button type="submit" class="btn btn-light float-right">Gravar</button>
-               
             </form>
          </div>
       </div>

@@ -12,12 +12,12 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-              <div class="col-6" v-if="$auth.check(2)">
+            <div class="row" v-on:click="forceRerender">
+              <div class="col-6">
                 <addServiceDescription :empresaId="empresa.id"></addServiceDescription>
               </div>
               <div class="col-6">
-                <addServiceHours :empresaId="empresa.id"></addServiceHours>       
+                <addServiceHours :empresaId="empresa.id" componentKey></addServiceHours>       
               </div>
             </div>
         </div>
@@ -35,6 +35,7 @@ export default {
         companies: null,
         empresa: '',
         search: "",
+        componentKey: 0
       }
     },
     components: {
@@ -51,6 +52,11 @@ export default {
           }, () => {
             this.has_error = true
           })
+    },
+    methods: {
+    forceRerender() {
+      this.componentKey += 1
     }
+  }
 }
 </script>

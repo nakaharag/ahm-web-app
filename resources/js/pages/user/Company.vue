@@ -8,6 +8,12 @@
                 <companyDetail></companyDetail>
             </div>
         </div>
+        <div class="card card-default p-1 mb-2 d-flex">
+            <div class="card-header">Acessos</div>
+            <div class="card-body">
+                <companySocial></companySocial>
+            </div>
+        </div>
         <div class="row">
           <div class="col-6">
             <div class="card card-default p-1">
@@ -40,6 +46,7 @@
 </template>
 <script>
 import companyDetail from '../../components/company-detail.vue'
+import companySocial from '../../components/company-social.vue'
 import formList from '../../components/form-list.vue'
 import formCompletedList from '../../components/form-completed-list.vue'
 import extratoHoras from '../../components/extrato-horas.vue'
@@ -52,6 +59,7 @@ import extratoHoras from '../../components/extrato-horas.vue'
     },
     components: {
       companyDetail,
+      companySocial,
       formList,
       formCompletedList,
       extratoHoras

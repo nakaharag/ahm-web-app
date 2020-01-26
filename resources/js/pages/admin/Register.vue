@@ -31,7 +31,7 @@
                             <select class="form-control" name="role" id="role" v-model="role">
                               <option value=2>Admin</option>
                               <option value=1>Usuario</option>
-                              <option value=1>Cliente</option>
+                              <option value=3>Cliente</option>
                             </select>
                             <span class="help-block" v-if="has_error && errors.role">{{ errors.role }}</span>
                         </div>
@@ -70,9 +70,8 @@
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-dark">Enviar</button>
-                    <router-link v-if="$auth.check(2)" :to="{ name: 'admin-dashboard'}">Voltar</router-link>
-                    <router-link v-else :to="{ name: 'dashboard'}">Voltar</router-link>
+                    <router-link :to="{ name: 'admin-dashboard'}">Voltar</router-link>
+                    <button type="submit" class="btn btn-dark float-right">Enviar</button>
                 </form>
             </div>
         </div>
@@ -111,7 +110,8 @@
           },
           success: function () {
             app.success = true
-            this.$router.go(-1)
+            alert('Usuário cadastrado com sucesso')
+            //this.$router.go(-1)
             //this.$router.push({name: 'admin.dashboard', params: {successRegistrationRedirect: true}})
           },
           error: function (res) {
@@ -144,7 +144,7 @@
     background-color: #73738c;
     color: #FFF;
     border-radius: 5px;
-    float: right;
+    float: left;
   }
   a:hover{
     background-color: #565658;
