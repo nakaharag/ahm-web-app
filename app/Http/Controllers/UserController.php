@@ -38,4 +38,14 @@ class UserController extends Controller
             return response()->json(error);
         return response()->json(null); 
     }
+    public function find(Request $request, $email)
+    {
+        $user = User::where('email', $email)->first();
+
+        return response()->json(
+            [
+                'status' => 'success',
+                'user' => $user->toArray()
+            ], 200);
+    }
 }

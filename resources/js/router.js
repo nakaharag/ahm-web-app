@@ -11,7 +11,7 @@ import Dashboard from './pages/user/Dashboard'
 import userPage from './pages/user/Page'
 import AdminDashboard from './pages/admin/Dashboard'
 import CadastroHoras from './pages/user/CadastroHoras'
-import ClientDashboard from './pages/client/ClientDashboard'
+import ClientDashboard from './pages/client/Dashboard'
 
 // Routes
 const routes = [
@@ -37,7 +37,7 @@ const routes = [
     name: 'dashboard',
     component: Dashboard,
     meta: {
-      auth: true
+      auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
   {
@@ -111,7 +111,7 @@ const routes = [
     name: 'client-dashboard',
     component: ClientDashboard,
     meta: {
-      auth: true
+      auth: {roles: 3, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
   { path: '*', redirect: '/' },

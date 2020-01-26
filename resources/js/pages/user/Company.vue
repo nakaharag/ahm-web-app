@@ -31,7 +31,7 @@
             <div class="card card-default">
               <div class="card-header">Extrato de Serviços Prestrados</div>
               <div class="card-body">
-                <extratoHoras :company-id="this.$route.params.companyId"></extratoHoras>
+                <extratoHoras :companyId="this.$route.params.companyId"></extratoHoras>
               </div>
             </div>
           </div>
@@ -53,7 +53,8 @@ import extratoHoras from '../../components/extrato-horas.vue'
     components: {
       companyDetail,
       formList,
-      formCompletedList
+      formCompletedList,
+      extratoHoras
     }
   }
 </script>

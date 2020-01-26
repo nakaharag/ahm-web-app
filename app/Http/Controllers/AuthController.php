@@ -30,6 +30,7 @@ class AuthController extends Controller
         $user->nome = $request->nome;
         $user->role = $request->role;
         $user->whats = $request->whats;
+        $user->id_company = $request->id_company;
         $user->password = bcrypt($request->password);
         $user->save();
         return response()->json(['status' => 'success'], 200);

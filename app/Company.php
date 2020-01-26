@@ -23,4 +23,8 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function Servico()
+    {
+        return $this->hasMany(Servico::class);
+    }
 }

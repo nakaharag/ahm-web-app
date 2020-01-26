@@ -39,9 +39,14 @@ Route::group(['middleware' => 'auth:api', 'cors'], function(){
     Route::get('companies/{id}', 'CompanyController@show')->middleware('isAdminOrSelf');
     // Surveys
     //Route::get('surveys/{company_id}', 'SurveyController@index');
-
     Route::get('surveys/{id}/', 'SurveyController@index');
     Route::post('surveys', 'SurveyController@store');
     Route::delete('surveys/{id}/', 'SurveyController@delete');
+    // Services
+    Route::get('servico/{id}/', 'ServicoController@index');
+    Route::post('servico', 'ServicoController@store');
+    Route::put('servico', 'ServicoController@update');
+    // Client
+    Route::get('users/find/{email}', 'UserController@find');
 });
 

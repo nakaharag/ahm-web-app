@@ -52,10 +52,9 @@
               redirectTo = redirect ? redirect.from.name : 'admin-dashboard'
             } else if(this.$auth.user().role === 1){
               redirectTo = redirect ? redirect.from.name : 'dashboard' 
-            } else {
+            } else if(this.$auth.user().role === 3){
               redirectTo = redirect ? redirect.from.name : 'client-dashboard'
             }
-
             this.$router.push({name: redirectTo})
           },
           error: function() {

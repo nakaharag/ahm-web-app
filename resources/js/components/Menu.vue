@@ -15,9 +15,9 @@
           v-if="$auth.check(1)" 
           v-for="(route, key) in routes.user" 
           v-bind:key="route.path"
-          class="nav-item active"
+          class="nav-item"
         >
-          <router-link  :to="{ name : route.path }" :key="key">
+          <router-link class="nav-link" :to="{ name : route.path }" :key="key">
               {{route.name}}
           </router-link>
         </li>
@@ -105,7 +105,7 @@
           client: [
             {
               name: 'Dashboard',
-              path: 'dashboard-client'
+              path: 'client-dashboard'
             }
           ],
         }

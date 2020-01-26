@@ -6,7 +6,7 @@
                 <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.whats }">
                     <label for="empresa">Selecione o cliente...</label>
                     <select class="form-control" name="empresa" id="empresa" v-model="empresa">
-                        <option :key="company.id" v-bind:value="company.id" v-for="company in companies">
+                        <option :key="company.id" v-bind:value="{id: company.id}" v-for="company in companies">
                         {{ company.empresa }}
                         </option>
                     </select>
@@ -14,10 +14,10 @@
             </div>
             <div class="row">
               <div class="col-6" v-if="$auth.check(2)">
-                <addServiceDescription :company-id="this.$route.params.companyId"></addServiceDescription>
+                <addServiceDescription :empresaId="empresa.id"></addServiceDescription>
               </div>
               <div class="col-6">
-                <addServiceHours></addServiceHours>       
+                <addServiceHours :empresaId="empresa.id"></addServiceHours>       
               </div>
             </div>
         </div>

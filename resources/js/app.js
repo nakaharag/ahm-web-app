@@ -10,6 +10,9 @@ import Index from './Index'
 import auth from './auth'
 import router from './router'
 import moment from "moment";
+import DatePicker from 'vue2-datepicker';
+import VueNumericInput from 'vue-numeric-input';
+
 
 // Set Vue globally
 window.Vue = Vue
@@ -21,9 +24,14 @@ Vue.use(VueAxios, axios)
 
 Vue.use(VueTheMask)
 
+Vue.use(DatePicker)
 window.moment = moment
 
 Vue.config.productionTip = false
+
+
+ 
+Vue.use(VueNumericInput)
 
 Vue.filter('moment', function (value) {
   return moment(value).format('DD/MM/YYYY')

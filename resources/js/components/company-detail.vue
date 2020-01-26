@@ -13,7 +13,7 @@
               <th scope="col">Whats</th>
               <th scope="col">Horas Contratadas</th>
               <th scope="col">Data de cadastro</th>
-              <th scope="col">Ações</th>
+              <th scope="col" v-if="$auth.check(2)">Ações</th>
           </tr>
               <tr style="margin-bottom: 5px;">
                   <th scope="row">{{ company.empresa }}</th>
@@ -23,7 +23,7 @@
                   <td>{{ company.whats }}</td>
                   <td>{{ company.horas }}</td>
                   <td>{{ company.created_at | moment }}</td>
-                  <td @click.prevent="deleteCompany" ><a href="#"> Apagar</a></td>
+                  <td @click.prevent="deleteCompany" v-if="$auth.check(2)"><a href="#"> Apagar</a></td>
               </tr>
       </table>
     </div>

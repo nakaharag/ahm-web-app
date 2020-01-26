@@ -106,7 +106,7 @@
             email: app.email,
             password: app.password,
             whats: app.whats,
-            id_company: add.empresa,
+            id_company: app.empresa,
             password_confirmation: app.password_confirmation
           },
           success: function () {

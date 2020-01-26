@@ -47,7 +47,7 @@ export default {
     };
 
     var model = new SurveyVue.Model(json)
-console.log(model)
+    
     model.data = this.$attrs.result;
     model.mode = 'display';
   

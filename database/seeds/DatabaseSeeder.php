@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('user'),
             'whats' => '(11) 93371-0777',
             'role' => 3,
-            'id_company' => 2
+            'id_company' => 1
         ]);
         User::create([
             'nome' => 'User 2 Teeste',
