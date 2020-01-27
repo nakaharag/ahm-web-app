@@ -51,7 +51,8 @@
       console.log(error);
       })
          .then((res) => {
-         this.servicos = res.data
+         this.servicos = res.data.servicos,
+         console.log(res)
          }, () => {
          this.has_error = true
          })

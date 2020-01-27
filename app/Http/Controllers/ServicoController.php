@@ -8,26 +8,45 @@ use DB;
 class ServicoController extends Controller
 {
     public function index(Request $request)
-   {
-       // return Servico::where('id_company', $request['id'])->get();
+    {
+        ///$users = User::all();
+       $servico = Servico::with('servicoListas')->get();
+       //$a = $request['id']; ::where('id_company', $request['id'])
+ 
+    //    $servico = Servico::with(["servicoListas" => function($q){
+    //         $q->where('servicos.id_company', '=', $request['id']);
+    //     }]);
+    // $servico = Servico::with('servicoListas', function ($query) {
+    //     $query->where('servicos.id_company', '=', '4');
+    // })->get();
 
-    $services = DB::table('servicos')
+        // $servico = Servico::with(["servicoListas" => function($q){
+        //     $q->where('id_company', '=', '4');
+        // }])->get();
+
+       // $users = $this->user->with('salutation')->all();
+
+       $servico = DB::table('servicos')
         ->select(
             DB::raw('any_value(data) as data'), 
-            DB::raw('any_value(id) as id'), 
             DB::raw('any_value(titulo) as titulo'), 
             DB::raw('any_value(descricao) as descricao'), 
-            DB::raw('any_value(horas) as horas'), 
+            DB::raw('any_value(tempo) as horas'), 
             DB::raw('MONTH(data) as month'),
             DB::raw('YEAR(data) as year')
         )
         ->where('id_company', $request['id'])
+        ->join('servico_listas', 'servicos.id_servico_lista', 'servico_listas.id')
     //   ->groupBy('month', 'year')
         ->orderBy('data', 'desc')
         ->get();
-    //return $services;
-        return response()->json($services, 200);
-   }
+
+        return response()->json(
+            [
+                'status' => 'success',
+                'servicos' => $servico->toArray()
+            ], 200);
+    }
 
    public function index_old(Request $request)
    {

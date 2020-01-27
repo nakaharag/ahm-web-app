@@ -14,4 +14,9 @@ class Servico extends Model
     {
         return $this->belongsTo(Company::class, 'id_company');
     }
+
+    public function ServicoListas()
+    {
+        return $this->hasOne(ServicoListas::class, 'id');
+    }
 }

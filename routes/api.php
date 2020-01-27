@@ -43,8 +43,8 @@ Route::group(['middleware' => 'auth:api', 'cors'], function(){
     Route::post('surveys', 'SurveyController@store');
     Route::delete('surveys/{id}/', 'SurveyController@delete');
     // Services Listing
-    Route::post('servico/list/', 'ListaServicoController@store');
-    Route::get('servico/list/', 'ListaServicoController@index');
+    Route::post('servico/list/', 'ServicoListasController@store');
+    Route::get('servico/list/', 'ServicoListasController@index');
 
     Route::post('servico', 'ServicoController@store');
     //Route::put('servico', 'ServicoController@update');
