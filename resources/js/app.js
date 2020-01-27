@@ -37,6 +37,10 @@ Vue.filter('moment', function (value) {
   return moment(value).format('DD/MM/YYYY')
 })
 
+Vue.filter('mes', function (value) {
+  moment.locale('pt-br');
+  return moment(value).format('MMMM')
+})
 
 Vue.filter('format-thousands', function (value) {
   // https://stackoverflow.com/a/2901298

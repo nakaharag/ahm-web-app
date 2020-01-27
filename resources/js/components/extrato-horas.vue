@@ -2,30 +2,33 @@
 <div>
     <div id="list-companies" v-if="servicos && servicos.length && company">
       <p v-if="company" class="m-2 float-right">Horas contratadas: {{ company.horas }}</p>
+
       <ul>
-      <li v-for="period in periods" v-bind:key="period.contagem + 1">{{ period.contagem }}</li>
-      </ul>
-      <table class="table">
-          <tr>
+        <li v-for="period in periods" v-bind:key="period.id">
+          Periodo: {{ period.month }} / {{  period.year }}
+
+          <table class="table">
+            <tr>
               <th scope="col">Titulo</th>
               <th scope="col">Descrição</th>
               <th scope="col">Tempo</th>
               <th scope="col">Data</th>
-          </tr>
-          <tr v-for="period in periods" v-bind:key="period.contagem +1" style="margin-bottom: 5px;">
-            Periodo: {{ period.month }} / {{  period.year }}
-          </tr>
-          <tr v-for="servico in servicos" v-bind:key="servico.id" style="margin-bottom: 5px;">
-            <th scope="row">{{ servico.titulo }}</th>
-            <td>{{ servico.descricao }}</td>
-            <td>{{ servico.horas }}<p v-if="servico.horas"> minutos</p></td>
-            <td>{{ servico.data | moment }}</td>
-          </tr>
-          <p class="pt-3 float-right">Saldo de horas: {{ totalHours }}</p>
-      </table>
+            </tr>
+            <tr v-for="servico in servicos" v-bind:key="servico.id" style="margin-bottom: 5px;">
+              <div class="d-contents" v-if="period.month == servico.month && period.year == servico.year ">
+                <th scope="row">{{ servico.titulo }}</th>
+                <td>{{ servico.descricao }}</td>
+                <td>{{ servico.horas }}<p v-if="servico.horas"> minutos</p></td>
+                <td>{{ servico.data | moment }}</td>
+              </div>
+            </tr>
+              <p class="pt-3 float-right">Saldo de horas: {{ totalHours(period.month, period.year) }}</p>
+          </table>
+        </li>
+      </ul>
     </div>
     <div v-else>
-      Carregando informações...
+      Não Foram encontrados serviços
     </div>
 </div>
 </template>
@@ -36,7 +39,9 @@
         has_error: false,
         servicos: null,
         company: null,
-        periods: null
+        periods: null,
+        month: null,
+        year: null
       }
     },
     mounted() {
@@ -70,14 +75,26 @@
           .then(response => {
               this.periods = response.data
           });
+      },
+      totalHours(month, year){
+        let sum = 0;
+        for(let g = 0; g < this.servicos.length; g++){
+          if (month == this.servicos[g].month && year == this.servicos[g].year){
+            sum += this.servicos[g].horas;
+          }
+        }      
+        let total = this.company.horas - (sum/60)
+        return total.toFixed(2);
       }
     },
     computed: {
-      totalHours: function(){
+      totalHourss: function(month, year){
       let sum = 0;
-      for(let i = 0; i < this.servicos.length; i++){
-        sum += this.servicos[i].horas;
-      }
+
+        for(let g = 0; g < this.servicos.length; g++){
+          if (month == this.servicos.month && year == this.servicos.year)
+            sum += this.servicos[g].horas;
+        }      
       let total = this.company.horas - (sum/60).toFixed(2);
      return total;
    }
@@ -90,5 +107,8 @@
     }
     p {
       display: inline;
+    }
+    .d-contents {
+      display: contents;
     }
 </style>

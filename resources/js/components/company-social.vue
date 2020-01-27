@@ -3,7 +3,16 @@
     <div class="alert alert-danger" v-if="has_error">
         <p>Ocorreu um erro ao ler os detalhes de empresa</p>
     </div>
-    <div v-if="company">
+    <div 
+      v-if="
+        company.user_facebook || 
+        company.user_instagram || 
+        company.user_twitter || 
+        company.user_twitter || 
+        company.user_linkedin || 
+        company.user_youtube ||
+        company.user_hospedagem"
+      >
       <table class="table">
           <tr>
               <th scope="col">Rede Social</th>
@@ -49,7 +58,7 @@
               </tr>
       </table>
     </div>
-    <div v-else>Carregando...</div>
+    <div v-else>Não foram encontrados resultados</div>
 </div>
 </template>
 <script>

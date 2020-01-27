@@ -36,7 +36,8 @@
         .then(response => {
           console.log(response)
           this.forms = response.data
-          this.forms=='[]'?this.has_error = true:this.has_error = false
+          console.log(this.forms)
+          this.forms.length==0?this.has_error = true:this.has_error = false
         })
         .catch(err => {
             this.has_error = true
