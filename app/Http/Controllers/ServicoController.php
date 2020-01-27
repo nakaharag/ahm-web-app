@@ -29,6 +29,28 @@ class ServicoController extends Controller
         return response()->json($services, 200);
    }
 
+   public function index_old(Request $request)
+   {
+       // return Servico::where('id_company', $request['id'])->get();
+
+    $services = DB::table('servicos')
+        ->select(
+            DB::raw('any_value(data) as data'), 
+            DB::raw('any_value(id) as id'), 
+            DB::raw('any_value(titulo) as titulo'), 
+            DB::raw('any_value(descricao) as descricao'), 
+            DB::raw('any_value(horas) as horas'), 
+            DB::raw('MONTH(data) as month'),
+            DB::raw('YEAR(data) as year')
+        )
+        ->where('id_company', $request['id'])
+    //   ->groupBy('month', 'year')
+        ->orderBy('data', 'desc')
+        ->get();
+    //return $services;
+        return response()->json($services, 200);
+   }
+
    public function periods(Request $request)
    {
        // return Servico::where('id_company', $request['id'])->get();
@@ -51,10 +73,9 @@ class ServicoController extends Controller
     {
         $servico =  Servico::create([
             'id_company' => $request['company_id'],
-            'titulo' => $request['titulo'],
-            'descricao' => $request['descricao'],
+            'id_servico_lista' => $request['id_servico_lista'],
             'data' => $request['data'],
-            'horas' => $request['horas']
+            'tempo' => $request['tempo']
         ]);
 
         $servico->save();

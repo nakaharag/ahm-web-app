@@ -15,10 +15,10 @@ class Servico extends Migration
     {
         Schema::create('servicos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('horas')->nullable();
-            $table->string('titulo');
-            $table->text('descricao')->nullable();
+            $table->integer('tempo')->nullable();
             $table->date('data');
+            $table->integer('id_servico_lista');
+            $table->foreign('id_servico_lista')->references('id')->on('servico_lista');
             $table->integer('id_company');
             $table->foreign('id_company')->references('id')->on('companies');
             $table->timestamps();

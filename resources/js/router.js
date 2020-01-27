@@ -12,6 +12,7 @@ import userPage from './pages/user/Page'
 import AdminDashboard from './pages/admin/Dashboard'
 import CadastroHoras from './pages/user/CadastroHoras'
 import ClientDashboard from './pages/client/Dashboard'
+import CadastroServicos from './pages/user/CadastroServicos'
 
 // Routes
 const routes = [
@@ -80,6 +81,14 @@ const routes = [
       auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
+  {
+    path: '/cadastro-servicos',
+    name: 'cadastro-servicos',
+    component: CadastroServicos,
+    meta: {
+      auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+    }
+  },
   // ADMIN ROUTES
   {
     path: '/admin',
@@ -89,13 +98,13 @@ const routes = [
       auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },  
-    {
-    path: '/register',
-    name: 'admin-register',
-    component: Register,
-    meta: {
-      auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
-    }
+  {
+  path: '/register',
+  name: 'admin-register',
+  component: Register,
+  meta: {
+    auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+  }
   },
   {
     path: '/user',

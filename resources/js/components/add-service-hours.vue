@@ -11,9 +11,21 @@
                         </option>
                     </select>
                </div>
-               <div class="form-group">
-                  <label for="horas" class="control-label m-4">Quantidade de minutos</label>
-                  <vue-numeric-input  v-model="horas" :min="1" :max="9999" :step="1"></vue-numeric-input>
+               <div class="row">
+                  <div class="col-6">
+                     <div class="form-group">
+                        <label for="tempo" class="control-label">Quantidade de minutos</label>
+                        <vue-numeric-input  v-model="tempo" :min="1" :max="9999" :step="1"></vue-numeric-input>
+                     </div>
+                  </div>
+                  <div class="col-6">
+                     <div class="form-group">
+                        <label for="date-picker" class="control-label d-block">Data</label>
+                        <template>
+                           <date-picker v-model="data" :format="momentForamt"></date-picker>
+                        </template>
+                     </div>
+                  </div>
                </div>
                <button type="submit" class="btn btn-light float-right">Gravar</button>
             </form>
@@ -28,9 +40,20 @@ import "vue2-datepicker/locale/pt-br";
 export default {
   data() {
     return {
-        horas: null,
+        data: null,
+        tempo: null,
         servicos: '',
-        servico: null
+        servico: null,
+        momentForamt: {
+         // Date to String
+         stringify: date => {
+            return date ? moment(date).format("DD/MM/YYYY") : "";
+         },
+         // String to Date
+         parse: value => {
+            return value ? moment(value, "DD").toDate() : null;
+         }
+      }
     };
     components: {
         VueNumericInput
@@ -39,18 +62,22 @@ export default {
     methods: {
       gravar() {
         var app = this
+        var date = moment(app.data).format("YYYY-MM-DD HH:mm:ss");
         var data = {
-            horas: app.horas,
-            servico: app.servico,
-            servico_id: app.servico,
+            tempo: app.tempo,
+            data: date,
+            id_servico_lista: app.servico,
             company_id: this.$attrs.empresaId
           }
-          axios.put('servico', data
+          axios.post('servico', data
       ).catch(function (error) {
         console.log(error);
       }).then(
         //this.$router.go(-1)
-        alert('Cadastro realizado com sucesso')
+        alert('Cadastro realizado com sucesso'),
+        app.tempo = 0,
+        app.date = null,
+        app.servico = ''
       );
       }
     },
@@ -58,9 +85,7 @@ export default {
     watch: {
        $attrs: {
       handler() {
-        //this.parseData();
-        console.log(this.$attrs)
-        axios.get(`servico/${this.$attrs.empresaId}`
+        axios.get(`servico/list/`
       ).catch(function (error) {
       console.log(error);
       })

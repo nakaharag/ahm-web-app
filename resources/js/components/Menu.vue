@@ -100,6 +100,10 @@
               name: 'Cadastro de horas',
               path: 'cadastro-horas'
             },
+            {
+              name: 'Cadastro de Serviços',
+              path: 'cadastro-servicos'
+            },
           ],
           // LOGGED Client
           client: [

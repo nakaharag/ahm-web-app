@@ -42,10 +42,12 @@ Route::group(['middleware' => 'auth:api', 'cors'], function(){
     Route::get('surveys/{id}/', 'SurveyController@index');
     Route::post('surveys', 'SurveyController@store');
     Route::delete('surveys/{id}/', 'SurveyController@delete');
-    // Services
-    
+    // Services Listing
+    Route::post('servico/list/', 'ListaServicoController@store');
+    Route::get('servico/list/', 'ListaServicoController@index');
+
     Route::post('servico', 'ServicoController@store');
-    Route::put('servico', 'ServicoController@update');
+    //Route::put('servico', 'ServicoController@update');
     // Client
     Route::get('users/find/{email}', 'UserController@find');
 });
