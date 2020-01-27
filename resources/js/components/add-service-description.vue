@@ -11,13 +11,28 @@
                   <label for="descricao">Descrição</label>
                   <textarea class="form-control" id="descricao" name="descricao" v-model="descricao" rows="3"></textarea>
                </div>
-               <div class="form-group">
-                  <label for="date-picker">Data</label>
+               <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                  <label for="horas" class="control-label">Quantidade de minutos</label>
+                  <template>
+                  <vue-numeric-input  v-model="horas" :min="1" :max="9999" :step="1"></vue-numeric-input>
+                  </template>
                </div>
-               <template>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                  <label for="date-picker">Data</label>
+                  <template>
                   <date-picker v-model="data" :format="momentForamt"></date-picker>
                </template>
-               <button type="submit" class="btn btn-light float-right">Gravar</button>
+               </div>
+               
+                </div>
+               </div>
+               
+               
+               <button type="submit" class="btn btn-light">Gravar</button>
             </form>
          </div>
       </div>
@@ -33,6 +48,7 @@ export default {
       data: null,
       descricao: null,
       titulo: null, 
+      horas: null,
       company_id: this.$attrs.empresaId,
       // Use moment.js instead of the default
       momentForamt: {
@@ -46,24 +62,35 @@ export default {
         }
       }
     };
+    components: {
+        VueNumericInput
+    }
   },
     methods: {
       gravar() {
         var app = this
         var date = moment(app.data).format("YYYY-MM-DD HH:mm:ss");
         var data = {
+            horas: app.horas,
             data: date,
             descricao: app.descricao,
             titulo: app.titulo,
             company_id: this.$attrs.empresaId
           }
           axios.post('servico', data
-      ).catch(function (error) {
-        console.log(error);
-      }).then(
-        alert("Serviço cadastrado com sucesso!"),
-        this.$router.go(0)
-      );
+            ).catch(function (error) {
+              console.log(error);
+            }).then(
+              alert("Serviço cadastrado com sucesso!"),
+              this.clean()
+              //this.$router.go(0)
+            );
+      },
+      clean(){
+        this.horas=0
+        this.data=''
+        this.descricao=''
+        this.titulo =''
       }
     }
 };

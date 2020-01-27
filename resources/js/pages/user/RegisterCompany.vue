@@ -8,35 +8,53 @@
                     <p v-else>Não foi possível cadastrar. Tente novamente ou contate o suporte</p>
                 </div>
                 <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
+                  <div class="row">
+                    <div class="col-6">
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.empresa }">
                         <label for="empresa">Nome da Empresa</label>
                         <input type="text" id="empresa" class="form-control" placeholder="Ex: Internet LTDA" v-model="empresa">
                         <span class="help-block" v-if="has_error && errors.empresa">{{ errors.empresa }}</span>
                     </div>
+                    </div>
+                    <div class="col-6">
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.responsavel }">
                         <label for="responsavel">Responsável</label>
                         <input type="text" id="responsavel" class="form-control" placeholder="Ex: João da Silva" v-model="responsavel">
                         <span class="help-block" v-if="has_error && errors.responsavel">{{ errors.responsavel }}</span>
                     </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-6">
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.setor }">
                         <label for="setor">Setor</label>
                         <input type="text" id="setor" class="form-control" placeholder="Ex: Administrativo" v-model="setor">
                         <span class="help-block" v-if="has_error && errors.setor">{{ errors.setor }}</span>
                     </div>
+                    </div>
+                    <div class="col-6">
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.email }">
                         <label for="email">E-mail</label>
                         <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email">
                         <span class="help-block" v-if="has_error && errors.email">{{ errors.email }}</span>
                     </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-6">
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.whats }">
                         <label for="whats">Whatsapp</label>
                         <input type="text" id="whats" class="form-control" placeholder="(99) 99999-9999" v-model="whats">
                         <span class="help-block" v-if="has_error && errors.whats">{{ errors.whats }}</span>
                     </div>
+                    </div>
+                    <div class="col-6">
                     <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.horas }">
                         <label for="horas">Quantidade de horas contratadas</label>
                         <input type="text" id="horas" class="form-control" placeholder="Somente números" v-model="horas">
                         <span class="help-block" v-if="has_error && errors.horas">{{ errors.horas }}</span>
+                    </div>
+                    </div>
                     </div>
                     <h5>Mídias Sociais:</h5>
                     <div class="row">

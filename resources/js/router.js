@@ -37,7 +37,7 @@ const routes = [
     name: 'dashboard',
     component: Dashboard,
     meta: {
-      auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+      auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
   {
@@ -86,7 +86,7 @@ const routes = [
     name: 'admin-dashboard',
     component: AdminDashboard,
     meta: {
-      auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+      auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },  
     {
@@ -94,7 +94,7 @@ const routes = [
     name: 'admin-register',
     component: Register,
     meta: {
-      auth: {roles: 2, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+      auth: {roles: [1, 2], redirect: {name: 'login'}, forbiddenRedirect: '/403'}
     }
   },
   {

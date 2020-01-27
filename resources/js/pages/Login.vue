@@ -51,7 +51,7 @@
             if(this.$auth.user().role === 2){
               redirectTo = redirect ? redirect.from.name : 'admin-dashboard'
             } else if(this.$auth.user().role === 1){
-              redirectTo = redirect ? redirect.from.name : 'dashboard' 
+              redirectTo = redirect ? redirect.from.name : 'admin-dashboard' 
             } else if(this.$auth.user().role === 3){
               redirectTo = redirect ? redirect.from.name : 'client-dashboard'
             }

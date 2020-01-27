@@ -2,12 +2,18 @@
 <div>
     <div id="list-companies" v-if="servicos && servicos.length && company">
       <p v-if="company" class="m-2 float-right">Horas contratadas: {{ company.horas }}</p>
+      <ul>
+      <li v-for="period in periods" v-bind:key="period.contagem + 1">{{ period.contagem }}</li>
+      </ul>
       <table class="table">
           <tr>
               <th scope="col">Titulo</th>
               <th scope="col">Descrição</th>
               <th scope="col">Tempo</th>
               <th scope="col">Data</th>
+          </tr>
+          <tr v-for="period in periods" v-bind:key="period.contagem +1" style="margin-bottom: 5px;">
+            Periodo: {{ period.month }} / {{  period.year }}
           </tr>
           <tr v-for="servico in servicos" v-bind:key="servico.id" style="margin-bottom: 5px;">
             <th scope="row">{{ servico.titulo }}</th>
@@ -29,12 +35,14 @@
       return {
         has_error: false,
         servicos: null,
-        company: null
+        company: null,
+        periods: null
       }
     },
     mounted() {
       this.getCompany(),
-      this.getServico()
+      this.getServico(),
+      this.getPeriods()
     },
     methods: {
       getServico() {
@@ -53,6 +61,13 @@
           .get(`/companies/${this.$attrs.companyId}`)
           .then(response => {
               this.company = response.data.company
+          });
+      },
+      getPeriods() {
+        axios
+          .get(`/servico/periods/${this.$attrs.companyId}`)
+          .then(response => {
+              this.periods = response.data
           });
       }
     },

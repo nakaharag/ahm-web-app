@@ -30,7 +30,7 @@
                             <label for="role">Perfil</label>
                             <select class="form-control" name="role" id="role" v-model="role">
                               <option value=2>Admin</option>
-                              <option value=1>Usuario</option>
+                              <!--<option value=1>Usuario</option>-->
                               <option value=3>Cliente</option>
                             </select>
                             <span class="help-block" v-if="has_error && errors.role">{{ errors.role }}</span>
@@ -111,7 +111,7 @@
           success: function () {
             app.success = true
             alert('Usuário cadastrado com sucesso')
-            //this.$router.go(-1)
+            this.$router.go(0)
             //this.$router.push({name: 'admin.dashboard', params: {successRegistrationRedirect: true}})
           },
           error: function (res) {
