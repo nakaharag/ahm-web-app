@@ -7,7 +7,7 @@
                     <p v-if="error == 'registration_validation_error'">Confira novamente por favor</p>
                     <p v-else>Não foi possível cadastrar. Tente novamente ou contate o suporte</p>
                 </div>
-                <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
+                <form @submit.prevent="register" v-if="!success" method="post">
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.nome }">
@@ -51,7 +51,7 @@
                                 {{ company.empresa }}
                               </option>
                             </select>
-                            <span class="help-block" v-if="has_error && errors.empresa">{{ errors.whats }}</span>
+                            <span class="help-block" v-if="has_error && errors.empresa">{{ errors.empresa }}</span>
                         </div>
                       </div>
                     </div>
@@ -150,5 +150,12 @@
     background-color: #565658;
     text-decoration: none;
     color: #FFF;
+  }
+  .has-error{
+    background-color: #fff5f5;
+  }
+  .help-block {
+    color: red;
+    font-size: 15px;
   }
 </style>

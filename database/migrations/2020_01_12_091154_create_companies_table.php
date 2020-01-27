@@ -43,6 +43,15 @@ class CreateCompaniesTable extends Migration
             $table->string('url_instagram')->nullable();
             $table->string('user_instagram')->nullable();
             $table->string('pw_instagram')->nullable();
+            $table->string('margem')->nullable();
+            $table->string('faturamento')->nullable();
+            $table->string('clientes')->nullable();
+            $table->string('fans_face')->nullable();
+            $table->string('seguidores_insta')->nullable();
+            $table->string('inscritos')->nullable();
+            $table->string('contatos')->nullable();
+            $table->string('seguidores_twitter')->nullable();
+            $table->string('obs')->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'nome' => 'required',
             'role' => 'required',
+            'id_company' => 'required',
             'password'  => 'required|min:5|confirmed',
         ]);
         if ($v->fails())

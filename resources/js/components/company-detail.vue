@@ -4,7 +4,33 @@
         <p>Ocorreu um erro ao ler os detalhes de empresa</p>
     </div>
     <div v-if="company">
-      <table class="table">
+      <div class="row">
+        <div class="col-3">
+          <p><strong>Empresa:</strong></p>
+          <p><strong>Responsável:</strong></p>
+          <p><strong>Setor:</strong></p>
+          <p><strong>E-mail:</strong></p>
+          <p><strong>Whats:</strong></p>
+        </div>
+        <div class="col-3">
+          <p>{{ company.empresa }}</p>
+          <p>{{ company.responsavel }}</p>
+          <p>{{ company.setor }}</p>
+          <p>{{ company.email }}</p>
+          <p>{{ company.whats }}</p>
+        </div>
+        <div class="col-3">
+          <p><strong>Quantidade de clientes:</strong></p>
+          <p><strong>Faturamento:</strong></p>
+          <p><strong>Média de margem de lucro:</strong></p>
+        </div>
+        <div class="col-3">
+          <p>{{ company.clientes }}</p>
+          <p>{{ company.faturamento }}</p>
+          <p>{{ company.margem }}</p>
+        </div>
+      </div>
+    <!--  <table class="table">
           <tr>
               <th scope="col">Empresa</th>
               <th scope="col">Responsável</th>
@@ -25,7 +51,7 @@
                   <td>{{ company.created_at | moment }}</td>
                   <td @click.prevent="deleteCompany" v-if="$auth.check(2)"><a href="#"> Apagar</a></td>
               </tr>
-      </table>
+      </table> -->
     </div>
     <div v-else>Carregando...</div>
 </div>

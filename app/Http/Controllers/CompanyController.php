@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -48,8 +49,21 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
-        return Company::create([
+    {   
+        $v = Validator::make($request->all(), [
+            'email' => 'required|email|unique:companies',
+            'responsavel' => 'required',
+            'empresa' => 'required',
+        ]);
+        if ($v->fails())
+        {
+            return response()->json([
+                'status' => 'error',
+                'errors' => $v->errors()
+            ], 422);
+        }
+
+        $company =  Company::create([
             'empresa' => $request['empresa'],
             'email' => $request['email'],
             'setor' => $request['setor'],
@@ -76,8 +90,21 @@ class CompanyController extends Controller
             'pw_facebook' => $request['pw_facebook'],
             'url_instagram' => $request['url_instagram'],
             'user_instagram' => $request['user_instagram'],
-            'pw_instagram' => $request['pw_instagram']
+            'pw_instagram' => $request['pw_instagram'],
+            'margem' => $request['margem'],
+            'faturamento' => $request['faturamento'],
+            'clientes' => $request['clientes'],
+            'fans_face' => $request['fans_face'],
+            'seguidores_insta' => $request['seguidores_insta'],
+            'inscritos' => $request['inscritos'],
+            'contatos' => $request['contatos'], 
+            'seguidores_twitter' => $request['seguidores_twitter'],
+            'obs' => $request['obs']
         ]);
+
+        $company->save();
+
+        return response()->json($company, 201);
     }
 
     /**
