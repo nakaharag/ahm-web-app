@@ -9,6 +9,8 @@ import Index from './Index'
 import auth from './auth'
 import router from './router'
 import moment from "moment";
+import VueTheMask from 'vue-the-mask'
+
 
 // Set Vue globally
 window.Vue = Vue
@@ -17,7 +19,8 @@ Vue.router = router
 Vue.use(VueRouter)
 // Set Vue authentication
 Vue.use(VueAxios, axios)
-
+// Set Vue the mask
+Vue.use(VueTheMask)
 window.moment = moment
 
 Vue.config.productionTip = false

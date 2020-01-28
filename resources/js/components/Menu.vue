@@ -17,7 +17,7 @@
           v-bind:key="route.path"
           class="nav-item active"
         >
-          <router-link  :to="{ name : route.path }" :key="key">
+          <router-link class="nav-link" :to="{ name : route.path }" :key="key">
               {{route.name}}
           </router-link>
         </li>
