@@ -4,7 +4,7 @@
             <div class="card-header">Login</div>
             <div class="card-body">
                 <div class="alert alert-danger" v-if="has_error">
-                    <p>Ocorreu um erro. Tente novamente mais tarde</p>
+                    <p>Ocorreu um erro. Verifique o login e tente novamente</p>
                 </div>
                 <form autocomplete="off" @submit.prevent="login" method="post">
                     <div class="form-group">
@@ -36,7 +36,7 @@
     methods: {
       login() {
         // get the redirect object
-        var redirect = this.$auth.redirect()
+        //var redirect = this.$auth.redirect()
         var app = this
         this.$auth.login({
           params: {
@@ -48,14 +48,15 @@
             // old wordking = const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin-dashboard' : 'dashboard'
             const redirectTo = '';
             
-            if(this.$auth.user().role === 2){
+            if(app.$auth.user().role === 2){
               redirectTo = redirect ? redirect.from.name : 'admin-dashboard'
-            } else if(this.$auth.user().role === 1){
+            } else if(app.$auth.user().role === 1){
               redirectTo = redirect ? redirect.from.name : 'admin-dashboard' 
-            } else if(this.$auth.user().role === 3){
+            } else if(app.$auth.user().role === 3){
               redirectTo = redirect ? redirect.from.name : 'client-dashboard'
             }
-            this.$router.push({name: redirectTo})
+
+            app.$router.push({name: redirectTo})
           },
           error: function() {
             app.has_error = true
